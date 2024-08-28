@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Listings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/candhome.css' %}">
+</head>
+<body>
+  <div class="container">
+    {% include 'candidate/navbar.html' %}
+    <div class="job-listings">
+      {% for job in jobpost %}
+        <div class="job-card">
+          <div class="active-tag" >Active</div>
+          <div class="job-header">
+            <br>
+            <h3 ><u>{{job.title}}</u></h3>
+            <span class="job-location" >{{job.address}}</span>
+          </div>
+          <div class="job-details">
+            <p>Company: {{job.companyName}}</p>
+            <p>Salary: Rs.{{job.salaryLow}} - Rs.{{job.salaryHigh}}</p>
+            <p>Last Date: {{job.lastDateToApply}}</p>
+          </div>
+          <a class="apply-button" href="{% url 'applyjob' job.id %}" style="text-decoration: none;
+            color: inherit;">Apply Now</a>
+        </div>
+      {% endfor %}
+        <!-- Add more job cards here -->
+      </div>
+  </div>
+</body>
+</html>
